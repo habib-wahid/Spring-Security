@@ -1,0 +1,1 @@
+## This repository is an implementation of Spring security. It implements various aspects and features of Spring Security.
