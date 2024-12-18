@@ -5,7 +5,16 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
   datasource:
-    url: jdbc:mysql//localhost:3306/spring_security
+    url: jdbc:mysql://localhost:3306/spring_security
     username: root
     password: root
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  app:
+    jwt:
+      secret: bXktc2VjcmV0LXNwcmluZy1ib290LWtleS1mb3ItdGhlLWRlbW8tc2VjdXJpdHktcHJvamVjdA==
+      expiration-time: 100000
