@@ -18,3 +18,21 @@ spring:
     jwt:
       secret: bXktc2VjcmV0LXNwcmluZy1ib290LWtleS1mb3ItdGhlLWRlbW8tc2VjdXJpdHktcHJvamVjdA==
       expiration-time: 100000
+  web:
+    resources:
+      add-mappings: true
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    org.springframework.security: DEBUG
+    org:
+      springframework:
+        security:
+          web:
+            access:
+              intercept:
+                FilterSecurityInterceptor: DEBUG
