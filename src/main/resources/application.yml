@@ -22,6 +22,12 @@ spring:
     resources:
       add-mappings: true
 
+  security:
+    oauth2:
+      resourceserver:
+        jwt:
+          jwk-set-uri: http://localhost:8080/realms/spring-security-with-authorization-server/protocol/openid-connect/certs
+
 springdoc:
   swagger-ui:
     path: /swagger-ui.html
@@ -36,3 +42,10 @@ logging:
             access:
               intercept:
                 FilterSecurityInterceptor: DEBUG
+
+server:
+  port: 9090
+
+security:
+  jwt:
+    enabled: false
