@@ -17,3 +17,12 @@
 - TestContainers
 - SSO
 - Authorization Server
+
+## How to run the project
+1. Install keycloak and run at port 8080
+2. Run the spring back-end
+
+## Client run command
+   ```bash
+   npm install
+   npm start
