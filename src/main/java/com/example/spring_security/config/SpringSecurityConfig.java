@@ -1,5 +1,6 @@
 package com.example.spring_security.config;
 
+import com.example.spring_security.converter.KeyCloakAuthenticationConverter;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 import org.springframework.security.authentication.AuthenticationManager;
@@ -15,6 +16,8 @@ import org.springframework.security.web.authentication.UsernamePasswordAuthentic
 import org.springframework.web.cors.CorsConfiguration;
 import org.springframework.web.cors.CorsConfigurationSource;
 import org.springframework.web.cors.UrlBasedCorsConfigurationSource;
+import org.springframework.security.oauth2.server.resource.authentication.JwtAuthenticationConverter;
+
 
 import java.util.List;
 
@@ -47,10 +50,16 @@ public class SpringSecurityConfig {
                         authorizeRequests.requestMatchers("/api/auth/**").permitAll()
                                 .requestMatchers(AUTH_WHITELIST).permitAll()
                         .anyRequest().authenticated())
-                .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer.jwt(Customizer.withDefaults()));
+                .oauth2ResourceServer(oauth2ResourceServer -> oauth2ResourceServer.jwt(jwt -> jwt.jwtAuthenticationConverter(jwtAuthenticationConverter())));
         return http.build();
     }
 
+
+    private JwtAuthenticationConverter jwtAuthenticationConverter() {
+        JwtAuthenticationConverter converter = new JwtAuthenticationConverter();
+        converter.setJwtGrantedAuthoritiesConverter(new KeyCloakAuthenticationConverter());
+        return converter;
+    }
 
     @Bean
     public CorsConfigurationSource corsConfigurationSource() {
